@@ -96,3 +96,7 @@ Below command will run the frontend with port 9966
 ```shell
 docker run -p 9966:9966 osrm/osrm-frontend
 ```
+
+If everything works well, open your browser and enter this url `http://127.0.0.1:9966/`, you should see below page.
+
+![osrm_frontend.PNG](img/osrm_frontend.PNG)
