@@ -5,6 +5,7 @@ In this tuto, we will try to install OSRM by using docker
 The project site can be found [here](http://project-osrm.org/)
 
 The project git repo can be found [here](https://github.com/Project-OSRM)
+
 The official installation doc can be found [here](https://github.com/Project-OSRM/osrm-backend)
 
 ## A quick install
@@ -74,11 +75,14 @@ After these two steps, you should see many files that start with `ile-de-france-
 docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/ile-de-france-latest.osm
 ```
 
+docker command option:
+
 -p p1:p2 : The p2 is the port number of the application runs inside the container. The p1 is the port number that you want to expose to host. For example -p 80:8080, the tomcat runs with 8080 inside the container, we expose it to host with port 80(accessible via host web brower).
 
-Note this time we run the docker image with command **osrm-routed**. It takes one option **--algorithm mld**, and the location of the map.
+OSRM command (osrm-routed)
+The command **osrm-routed** takes one option **--algorithm mld**, and the location of the map data.
 
-Note osrm support two algo:
+Note osrm support two algorithm:
 
 - Contraction Hierarchies (ch)
 - Multi-Level Dijkstra (mld)
@@ -114,6 +118,5 @@ docker run -p 9966:9966 osrm/osrm-frontend
 If everything works well, open your browser and enter this url `http://127.0.0.1:9966/`, you should see below page.
 
 ![osrm_frontend.PNG](img/osrm_frontend.PNG)
-
 
 ### Step 6. Configure R package
