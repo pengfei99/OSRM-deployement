@@ -120,3 +120,36 @@ If everything works well, open your browser and enter this url `http://127.0.0.1
 ![osrm_frontend.PNG](img/osrm_frontend.PNG)
 
 ### Step 6. Configure R package
+
+There are two R package that can facilitate the use of OSRM backend server:
+
+- metric.osrm
+-
+
+#### Install and configure metric.osrm
+
+You can find the official git lab repo [here](https://git.lab.sspcloud.fr/metric-osrm/metric-osrm-package).
+
+Below guide works for R>=3.4.0
+
+```shell
+# can be skipped, if its already installed
+install.packages("remotes")
+
+# install osrm metric
+remotes::install_gitlab(repo = 'metric-osrm/metric-osrm-package',
+                        host = 'git.lab.sspcloud.fr')
+# import the package
+library(metric.osrm)
+
+# configure the package to connect to a osrm backend server 
+options(osrm.server = "https://metric-osrm-backend.casd.eu/")
+
+# setup profile type, it must be provided by the backend server, otherwise it won't work
+options(osrm.profile = "driving") 
+```
+
+For more documentation about this package, you can visit this [page](https://metric-osrm.pages.lab.sspcloud.fr/metric-osrm-package/)
+
+#### Install and configure 
+You can install a shiny app to use the osrm backend. For more information, please check this [page](https://git.lab.sspcloud.fr/metric-osrm/metric-osrm-application-shiny)
