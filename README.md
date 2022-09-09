@@ -33,6 +33,8 @@ wget http://download.geofabrik.de/europe/france/ile-de-france-latest.osm.pbf
 
 The easiest way is to use the [osrm-backend docker image](https://hub.docker.com/r/osrm/osrm-backend/). This image contains the binary called `osrm-extract` which can do the data transformation.
 
+#### OSRM Extract
+
 Below commands are an example on how to use this docker image to the data transformation
 
 ```shell
@@ -40,11 +42,23 @@ Below commands are an example on how to use this docker image to the data transf
 docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/car.lua /data/ile-de-france-latest.osm.pbf
 ```
 
+Docker command:
+
 -t: this flag tells docker to allocate a virtual terminal session within the container. (If you want the terminal to be interactive, you can add -i option)
 
 -v "${PWD}:/data": this flag tells the docker Daemon to start up a `volume` in the `target container` which uses `file system of the host`. In our case, docker will create a volume **/data** in the container which uses the current location (retrived from ${PWD}) of the host. It means the file in our host will be mounted to **/data/ile-de-france-latest.osm.pbf inside the container**.
 
-Below are another two transformation that osrm need to transform the openstree map
+OSRM command (osrm-extract):
+
+-p /opt/car.lua : This option will set the profile for transformin the map from the .pbf into OSRM format by adding more information. For example autoroute speed limit.
+
+You can find an example of the `car.lua` file [here](https://github.com/Project-OSRM/osrm-backend/blob/master/profiles/car.lua).
+
+For more details on profiles, you can check this [page](https://github.com/Project-OSRM/osrm-backend/blob/master/docs/profiles.md)
+
+#### OSRM partition and customize
+
+Below are two other osrm transformation that osrm need to apply on the openstree map
 
 ```shell
 # for linux and windows
@@ -100,3 +114,6 @@ docker run -p 9966:9966 osrm/osrm-frontend
 If everything works well, open your browser and enter this url `http://127.0.0.1:9966/`, you should see below page.
 
 ![osrm_frontend.PNG](img/osrm_frontend.PNG)
+
+
+### Step 6. Configure R package
