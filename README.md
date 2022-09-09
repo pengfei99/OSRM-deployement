@@ -152,4 +152,14 @@ options(osrm.profile = "driving")
 For more documentation about this package, you can visit this [page](https://metric-osrm.pages.lab.sspcloud.fr/metric-osrm-package/)
 
 #### Install and configure 
+
 You can install a shiny app to use the osrm backend. For more information, please check this [page](https://git.lab.sspcloud.fr/metric-osrm/metric-osrm-application-shiny)
+
+```R
+# install the shiny app
+remotes::install_gitlab(repo = 'metric-osrm/metric-osrm-application-shiny',
+                        host = 'git.lab.sspcloud.fr')
+
+# run the shiny app with a osrm backend server
+shinyMetricOSRM::run_app(osrm.server = "https://metric-osrm-backend.casd.eu/")
+```
