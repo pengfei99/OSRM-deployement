@@ -124,7 +124,7 @@ If everything works well, open your browser and enter this url `http://127.0.0.1
 There are two R package that can facilitate the use of OSRM backend server:
 
 - metric.osrm
--
+- metric-osrm-application-shiny
 
 #### Install and configure metric.osrm
 
@@ -151,7 +151,7 @@ options(osrm.profile = "driving")
 
 For more documentation about this package, you can visit this [page](https://metric-osrm.pages.lab.sspcloud.fr/metric-osrm-package/)
 
-#### Install and configure 
+#### Install and configure metric-osrm-application-shiny
 
 You can install a shiny app to use the osrm backend. For more information, please check this [page](https://git.lab.sspcloud.fr/metric-osrm/metric-osrm-application-shiny)
 
@@ -163,3 +163,14 @@ remotes::install_gitlab(repo = 'metric-osrm/metric-osrm-application-shiny',
 # run the shiny app with a osrm backend server
 shinyMetricOSRM::run_app(osrm.server = "https://metric-osrm-backend.casd.eu/")
 ```
+
+If everthing works well, you should see a pop up window as shown in below figure
+
+![osrm_shiny_app.PNG](img/osrm_shiny_app.PNG)
+
+You can try to enter a starting a point and an ending point, can calculate the route.
+
+If everthing works well, you can get the statistic of the route and the iteration on a map. Below figure
+is an example
+
+![osrm_rout_calc.PNG](img/osrm_rout_calc.PNG)
