@@ -89,6 +89,25 @@ Note osrm support two algorithm:
 
 we recommend using MLD by default except for special use-cases such as very large distance matrices where CH is still a better fit for the time being. If you want to use the `--algorithm ch`. You need to transform the map differently. You need to replace `osrm-partition` and `osrm-customize` with a single `osrm-contract` in step 2.
 
+#### Change map data
+
+If you want to change the map data, you need to follow the step 2 to curate the new map data. For example, if the new map data called `france-transfrontalier-2022.osrm.pbf`. You need to run below command to transform the data.
+
+```shell
+# note the map data must be compatible with the option file car.lua
+docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/car.lua /data/france-transfrontalier-2022.osrm.pbf
+
+docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/france-transfrontalier-2022.osrm.pbf
+docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/france-transfrontalier-2022.osrm.pbf
+ 
+```
+
+After the transformation is done, you should see a file `france-transfrontalier-2022.osrm` is generated. You can run the backend with this newly generated ORSM map file
+
+```shell
+docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/france-transfrontalier-2022.osrm
+```
+
 ### Step 4. Test the backend
 
 The backend offers a Rest api which answers request on port 5000 (by default). Below command is an example.
