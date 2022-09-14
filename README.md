@@ -193,3 +193,20 @@ If everthing works well, you can get the statistic of the route and the iteratio
 is an example
 
 ![osrm_rout_calc.PNG](img/osrm_rout_calc.PNG)
+
+
+Note if you don't save your R studio work space after closing, when you start a new session of R studio, you need to reload the package and configure it
+
+```shell
+library(metric.osrm)
+
+# configure the package to connect to a osrm backend server 
+options(osrm.server = "https://metric-osrm-backend.casd.eu/")
+
+# setup profile type, it must be provided by the backend server, otherwise it won't work
+options(osrm.profile = "driving") 
+
+shinyMetricOSRM::run_app(osrm.server = "https://metric-osrm-backend.casd.eu/")
+```
+
+If you saved your R studio work space, you can just run the shiny app directly
